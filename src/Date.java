@@ -152,7 +152,7 @@ public class Date
         year--;
         // Last 2 digits of year
         int y = year % 100;
-        int c = firstDigitsOfYear(year);
+        int c = first2Digits(year);
 
         // Using a given formula to calculate the day in week
         return Math.floorMod((d + (26 * (m + 1)) / 10 + y + y / 4 + c / 4 - 2 * c), 7);
@@ -249,13 +249,8 @@ public class Date
         }
     }
 
-    /**
-     * Returns the first 2 digits of the year.
-     *
-     * @param year the year to get the digits from
-     * @return the first 2 digits of this year
-     */
-    private int firstDigitsOfYear(int year)
+    // Returns the first 2 digits
+    private int first2Digits(int year)
     {
         // If the year is more than 2 digits drop the last digit until
         // there are no more than 2 digits
@@ -267,12 +262,7 @@ public class Date
         return year;
     }
 
-    /**
-     * Checks the date to make sure it is valid.
-     *
-     * @param date The date to check
-     * @return true if the date is valid
-     */
+    // Checks the validity of the date
     private boolean isValid(Date date)
     {
         // Year must be positive and only 4 digits
@@ -295,16 +285,7 @@ public class Date
         return isValidDay(date);
     }
 
-    /**
-     * Checks that the day in the date is valid. Assumes that day, month, and year
-     * are within the limitations:
-     * day: 1 - 31
-     * month: 1 - 12
-     * year: 1000 - 9999
-     *
-     * @param date the date to check
-     * @return true if the day is valid, false otherwise
-     */
+    // Checks the validity of the day according to the year and month
     private boolean isValidDay(Date date)
     {
         int daysInMonth = 0;
@@ -347,25 +328,13 @@ public class Date
         return date._day <= daysInMonth;
     }
 
-    /**
-     * Check if the year is a leap year.
-     *
-     * @param year the year to check
-     * @return true if the year is a leap year
-     */
+    // Check if leap year
     private boolean isLeapYear(int year)
     {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 
-    /**
-     * Computes the day number since the beginning of the Christian counting of years.
-     *
-     * @param day   the day
-     * @param month the month
-     * @param year  the year
-     * @return number of days since 0/0/0
-     */
+    // computes the day number since the beginning of the Christian counting of years
     private int calculateDate(int day, int month, int year)
     {
         if (month < 3)
@@ -373,7 +342,6 @@ public class Date
             year--;
             month = month + 12;
         }
-        return 365 * year + year / 4 - year / 100 + year / 400 +
-                ((month + 1) * 306 / 10 + (day - 62));
+        return 365 * year + year / 4 - year / 100 + year / 400 + ((month + 1) * 306) / 10 + (day - 62);
     }
 }
