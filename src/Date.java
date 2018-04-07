@@ -148,8 +148,10 @@ public class Date
 
         // The formula deals with January and February as 13 and 14 of the previous year
         if (m < 3)
+        {
             m = m + 12;
-        year--;
+            year--;
+        }
         // Last 2 digits of year
         int y = year % 100;
         int c = first2Digits(year);
