@@ -10,6 +10,7 @@ public class Date
     private int _month;
     private int _year;
 
+    // Constants
     private final int DEFAULT_DAY = 1;
     private final int DEFAULT_MONTH = 1;
     private final int DEFAULT_YEAR = 2000;
@@ -19,6 +20,13 @@ public class Date
     private final int MIN_DAY = 1;
     private final int MIN_MONTH = 1;
     private final int MIN_YEAR = 1000;
+    private final int FEBRUARY = 2;
+    private final int APRIL = 4;
+    private final int JUNE = 6;
+    private final int SEPTEMBER = 9;
+    private final int NOVEMBER = 11;
+
+
     // Constructors
 
     /**
@@ -293,8 +301,8 @@ public class Date
         int daysInMonth = 0;
         switch (date._month)
         {
-            case 2:
-                // February might have 28 or 29 days
+            case FEBRUARY:
+                // February has 28 days, and 29 days on a leap year
                 if (isLeapYear(date._year))
                 {
                     daysInMonth = 29;
@@ -304,19 +312,19 @@ public class Date
                     daysInMonth = 28;
                 }
                 break;
-            case 4:
+            case APRIL:
                 // April has 30 days
                 daysInMonth = 30;
                 break;
-            case 6:
+            case JUNE:
                 // June has 30 days
                 daysInMonth = 30;
                 break;
-            case 9:
+            case SEPTEMBER:
                 // September has 30 days
                 daysInMonth = 30;
                 break;
-            case 11:
+            case NOVEMBER:
                 // November has 30 days
                 daysInMonth = 30;
                 break;
