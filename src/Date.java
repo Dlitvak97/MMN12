@@ -79,7 +79,7 @@ public class Date
     /**
      * Check if this date is before other date.
      *
-     * @param other the date to compare to
+     * @param other the date to compare this date to
      * @return true if this date is before other date
      */
     public boolean before(Date other)
@@ -110,7 +110,7 @@ public class Date
     /**
      * Check if this date is after other date.
      *
-     * @param other the date to compare to
+     * @param other the date to compare this date to
      * @return true if this date is after other date
      */
     public boolean after(Date other)

@@ -20,6 +20,9 @@ public class Book
     private final int PENALTY_PER_DAY = 5;
     private final int MAX_YEAR_PUBLISHED = 2018;
     private final int MIN_YEAR_PUBLISHED = 1800;
+    private final int DEFAULT_YEAR = 2000;
+    private final int DEFAULT_PAGES = 1;
+    private final int MIN_PAGES = 1;
 
     // Constructors
 
@@ -36,9 +39,9 @@ public class Book
     public Book(String title, String author, int yearPublished, int noOfPages)
     {
         if (yearPublished < MIN_YEAR_PUBLISHED || _yearPublished > MAX_YEAR_PUBLISHED)
-            yearPublished = 2000;
-        if (noOfPages < 1)
-            noOfPages = 1;
+            yearPublished = DEFAULT_YEAR;
+        if (noOfPages < MIN_PAGES)
+            noOfPages = DEFAULT_PAGES;
 
 
         _title = title;
