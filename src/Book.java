@@ -23,6 +23,7 @@ public class Book
     private final int DEFAULT_YEAR = 2000;
     private final int DEFAULT_PAGES = 1;
     private final int MIN_PAGES = 1;
+    private final int REGULAR_PELANTY_DAYS = 30;
 
     // Constructors
 
@@ -241,7 +242,7 @@ public class Book
             if (daysBorrowed < DOUBLE_PENALTY_DAYS)
                 return (PENALTY_PER_DAY * (daysBorrowed - MAX_BORROW_DAYS));
 
-            return (PENALTY_PER_DAY * (daysBorrowed - MAX_BORROW_DAYS)) +
+            return (PENALTY_PER_DAY * REGULAR_PELANTY_DAYS) +
                     (2 * PENALTY_PER_DAY * (daysBorrowed - DOUBLE_PENALTY_DAYS));
         }
         return 0;
@@ -316,7 +317,9 @@ public class Book
      */
     public Date getBorrowedDate()
     {
-        return new Date(_borrowDate);
+        if (_borrowDate != null)
+            return new Date(_borrowDate);
+        else return null;
     }
 
     /**
@@ -326,7 +329,10 @@ public class Book
      */
     public Date getReturnDate()
     {
-        return new Date(_returnDate);
+        if (_returnDate != null)
+            return new Date(_returnDate);
+        else
+            return null;
     }
 
     // Setters
