@@ -23,7 +23,7 @@ public class Book
     private final int DEFAULT_YEAR = 2000;
     private final int DEFAULT_PAGES = 1;
     private final int MIN_PAGES = 1;
-    private final int REGULAR_PELANTY_DAYS = 30;
+    private final int REGULAR_PENALNTY_DAYS = 30;
 
     // Constructors
 
@@ -169,7 +169,7 @@ public class Book
         {
             boolean isLate = false;
             // Check if the book is returned late
-            if (howLongBorrowed(d) > 30)
+            if (howLongBorrowed(d) > MAX_BORROW_DAYS)
                 isLate = true;
 
             // Update return date, remove student name, change borrow status
@@ -236,13 +236,16 @@ public class Book
         {
             int daysBorrowed = howLongBorrowed(d);
 
-            if (daysBorrowed < MAX_BORROW_DAYS)
+            // If the student is not over the maximum borrow days he has no penalty
+            if (daysBorrowed <= MAX_BORROW_DAYS)
                 return 0;
 
-            if (daysBorrowed < DOUBLE_PENALTY_DAYS)
+            // If the student is after the maximum borrow days but under the double penalty days
+            if (daysBorrowed <= DOUBLE_PENALTY_DAYS)
                 return (PENALTY_PER_DAY * (daysBorrowed - MAX_BORROW_DAYS));
 
-            return (PENALTY_PER_DAY * REGULAR_PELANTY_DAYS) +
+            // If the student is after the double penalty days add the double penalty to the regular penalty for 30 days
+            return (PENALTY_PER_DAY * REGULAR_PENALNTY_DAYS) +
                     (2 * PENALTY_PER_DAY * (daysBorrowed - DOUBLE_PENALTY_DAYS));
         }
         return 0;
@@ -364,7 +367,7 @@ public class Book
      */
     public void setYear(int n)
     {
-        if (n < 2018 && n > 1800)
+        if (n <= MAX_YEAR_PUBLISHED && n >= MIN_YEAR_PUBLISHED)
             _yearPublished = n;
     }
 
@@ -375,7 +378,7 @@ public class Book
      */
     public void setPages(int n)
     {
-        if (n > 0)
+        if (n >= MIN_PAGES)
             _noOfPages = n;
     }
 }
