@@ -2,7 +2,7 @@
  * This class represents a Book object.
  *
  * Author: Daniel Litvak
- * Date: 1.4.2018
+ * Date: 15.4.2018
  */
 public class Book
 {

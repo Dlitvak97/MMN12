@@ -2,7 +2,7 @@
  * This class represents a Date object.
  *
  * Author: Daniel Litvak
- * Date: 1.4.2018
+ * Date: 15.4.2018
  */
 public class Date
 {
@@ -25,6 +25,10 @@ public class Date
     private final int JUNE = 6;
     private final int SEPTEMBER = 9;
     private final int NOVEMBER = 11;
+    private final int NUM_DAYS_LONG_MONTH = 31;
+    private final int NUM_DAYS_SHORT_MONTH = 30;
+    private final int NUM_DAYS_FEBRUARY_LEAP_YEAR = 29;
+    private final int NUM_DAYS_FEBRUARY_NOT_LEAP_YEAR = 28;
 
 
     // Constructors
@@ -229,14 +233,14 @@ public class Date
     public void setMonth(int monthToSet)
     {
         // Keep previous month in case the new date is invalid
-        int previuosMonth = _month;
+        int previousMonth = _month;
 
         _month = monthToSet;
 
         // If the new date is invalid undo the change
         if (!isValid(this))
         {
-            _month = previuosMonth;
+            _month = previousMonth;
         }
     }
 
@@ -248,14 +252,14 @@ public class Date
     public void setYear(int yearToSet)
     {
         // Keep previous year in case the new date is invalid
-        int previuosYear = _year;
+        int previousYear = _year;
 
         _year = yearToSet;
 
         // If the new date is invalid undo the change
         if (!isValid(this))
         {
-            _year = previuosYear;
+            _year = previousYear;
         }
     }
 
@@ -298,39 +302,39 @@ public class Date
     // Checks the validity of the day according to the year and month
     private boolean isValidDay(Date date)
     {
-        int daysInMonth = 0;
+        int daysInMonth;
         switch (date._month)
         {
             case FEBRUARY:
                 // February has 28 days, and 29 days on a leap year
                 if (isLeapYear(date._year))
                 {
-                    daysInMonth = 29;
+                    daysInMonth = NUM_DAYS_FEBRUARY_LEAP_YEAR;
                 }
                 else
                 {
-                    daysInMonth = 28;
+                    daysInMonth = NUM_DAYS_FEBRUARY_NOT_LEAP_YEAR;
                 }
                 break;
             case APRIL:
-                // April has 30 days
-                daysInMonth = 30;
+                // April is a short month
+                daysInMonth = NUM_DAYS_SHORT_MONTH;
                 break;
             case JUNE:
-                // June has 30 days
-                daysInMonth = 30;
+                // June is a short month
+                daysInMonth = NUM_DAYS_SHORT_MONTH;
                 break;
             case SEPTEMBER:
-                // September has 30 days
-                daysInMonth = 30;
+                // September is a short month
+                daysInMonth = NUM_DAYS_SHORT_MONTH;
                 break;
             case NOVEMBER:
-                // November has 30 days
-                daysInMonth = 30;
+                // November is a short month
+                daysInMonth = NUM_DAYS_SHORT_MONTH;
                 break;
             default:
-                // 31 days in all the other months
-                daysInMonth = 31;
+                // all the other months are long months
+                daysInMonth = NUM_DAYS_LONG_MONTH;
                 break;
         }
 
